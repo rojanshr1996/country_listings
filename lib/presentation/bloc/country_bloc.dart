@@ -9,13 +9,11 @@ class CountryBLoc extends Bloc<CountryEvent, CountryState> {
   CountryBLoc(this._countryRepo) : super(InitialCountryState()) {
     on<FetchCountriesEvent>((event, emit) async {
       emit(LoadingCountryState());
-      final result = await _countryRepo.fetchAllCountryList();
-      if (result.data != null) {
+      try {
+        final result = await _countryRepo.fetchAllCountryList();
         emit(LoadedCountryState(countries: result.data!));
-      } else {
-        if (result.error != null) {
-          emit(ErrorCountryState(result.error!));
-        }
+      } catch (error) {
+        emit(ErrorCountryState(Exception(error)));
       }
     });
   }
