@@ -1,7 +1,3 @@
-import 'package:country_listings/data/repositories/country_repository_impl.dart';
-import 'package:country_listings/data/sources/local/local_country_service.dart';
-import 'package:country_listings/data/sources/remote/country_services.dart';
-import 'package:country_listings/presentation/bloc/country_bloc.dart';
 import 'package:country_listings/utils/res/constants.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
