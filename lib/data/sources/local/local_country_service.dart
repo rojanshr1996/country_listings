@@ -1,9 +1,11 @@
 import 'package:country_listings/data/models/country_entity_model.dart';
+import 'package:country_listings/utils/res/data_state.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
 class LocalCountryService {
   static const _dbname = "country.db";
+  static const _tableName = "countries";
   static const _dbVersion = 1;
 
   Database? _database;
@@ -30,12 +32,12 @@ class LocalCountryService {
   }
 
   Future<void> _createDatabase(Database db, int version) async {
-    await db.execute('CREATE TABLE countries (officialName TEXT PRIMARY KEY, name TEXT)');
+    await db.execute('CREATE TABLE $_tableName (officialName TEXT PRIMARY KEY, name TEXT)');
   }
 
-  Future<List<CountryEntityModel>> findAllCountries() async {
+  Future<DataState<List<CountryEntityModel>>> findAllCountries() async {
     final database = await db;
-    final tableData = await database.query('countries');
+    final tableData = await database.query(_tableName);
     List<CountryEntityModel> countryList = tableData.isNotEmpty
         ? tableData
             .map(
@@ -43,13 +45,13 @@ class LocalCountryService {
             )
             .toList()
         : [];
-    return countryList;
+    return DataSuccess(isLoading: false, data: countryList);
   }
 
-  Future<CountryEntityModel?> updateCountry({required CountryEntityModel country}) async {
+  Future<DataState<CountryEntityModel?>> updateCountry({required CountryEntityModel country}) async {
     final database = await db;
     final result = await database.update(
-      'countries',
+      _tableName,
       country.toJson(),
       where: 'officialName = ?',
       whereArgs: [
@@ -58,11 +60,11 @@ class LocalCountryService {
     );
 
     if (result == 0) {
-      final result = await database.insert("countries", country.toJson());
+      final result = await database.insert(_tableName, country.toJson());
       if (result != 0) {
-        return country;
+        return DataSuccess(isLoading: false, data: country);
       }
     }
-    return country;
+    return DataSuccess(isLoading: false, data: country);
   }
 }

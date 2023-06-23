@@ -20,13 +20,12 @@ class CountryRepositoryImpl extends BaseApiRepository implements CountryReposito
   }
 
   @override
-  Future<List<CountryEntityModel>> fetchCountryNames() {
+  Future<DataState<List<CountryEntityModel>>> fetchCountryNames() {
     return localCountryService.findAllCountries();
-    // return result;
   }
 
   @override
-  Future<CountryEntityModel?> updateCountryName({required CountryEntityModel countryName}) {
+  Future<DataState<CountryEntityModel?>> updateCountryName({required CountryEntityModel countryName}) {
     return localCountryService.updateCountry(country: countryName);
   }
 }

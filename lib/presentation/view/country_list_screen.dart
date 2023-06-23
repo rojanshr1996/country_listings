@@ -98,7 +98,6 @@ class CountryListScreen extends StatelessWidget {
           TextButton(
             child: const Text('Rename'),
             onPressed: () {
-              // final newName = controller.text;
               BlocProvider.of<CountryBloc>(context).add(
                 ChangeCountryNameEvent(
                     countryName: CountryEntityModel(

@@ -22,7 +22,7 @@ class DataState<T> {
 }
 
 class DataSuccess<T> extends DataState<T> {
-  const DataSuccess({required bool isLoading, required T data}) : super(isLoading: isLoading, data: data);
+  const DataSuccess({bool isLoading = false, required T data}) : super(isLoading: isLoading, data: data);
 }
 
 class DataFailed<T> extends DataState<T> {

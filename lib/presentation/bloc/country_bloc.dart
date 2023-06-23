@@ -26,7 +26,7 @@ class CountryBloc extends Bloc<CountryEvent, CountryState> {
       try {
         final result = await _countryRepo.updateCountryName(countryName: event.countryName);
         log("UPDATED COUNTRY RESULT: $result");
-        if (result is CountryEntityModel) {
+        if (result.data is CountryEntityModel) {
           emit(UpdatedCountryState());
         }
       } catch (error) {
@@ -39,7 +39,7 @@ class CountryBloc extends Bloc<CountryEvent, CountryState> {
       try {
         final result = await _countryRepo.fetchCountryNames();
         log("STORED COUNTRY RESULT: $result");
-        emit(StoredCountryNameState(storedCountryNames: result));
+        emit(StoredCountryNameState(storedCountryNames: result.data!));
       } catch (error) {
         emit(ErrorCountryState(Exception(error)));
       }
