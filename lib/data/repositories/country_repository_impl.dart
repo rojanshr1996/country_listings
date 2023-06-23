@@ -27,6 +27,6 @@ class CountryRepositoryImpl extends BaseApiRepository implements CountryReposito
 
   @override
   Future<CountryEntityModel?> updateCountryName({required CountryEntityModel countryName}) {
-    return localCountryService.updateCountry(countryName);
+    return localCountryService.updateCountry(country: countryName);
   }
 }

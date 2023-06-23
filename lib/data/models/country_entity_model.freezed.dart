@@ -20,6 +20,7 @@ CountryEntityModel _$CountryEntityModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$CountryEntityModel {
+  String get officialName => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -34,7 +35,7 @@ abstract class $CountryEntityModelCopyWith<$Res> {
           CountryEntityModel value, $Res Function(CountryEntityModel) then) =
       _$CountryEntityModelCopyWithImpl<$Res, CountryEntityModel>;
   @useResult
-  $Res call({String name});
+  $Res call({String officialName, String name});
 }
 
 /// @nodoc
@@ -50,9 +51,14 @@ class _$CountryEntityModelCopyWithImpl<$Res, $Val extends CountryEntityModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? officialName = null,
     Object? name = null,
   }) {
     return _then(_value.copyWith(
+      officialName: null == officialName
+          ? _value.officialName
+          : officialName // ignore: cast_nullable_to_non_nullable
+              as String,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -69,7 +75,7 @@ abstract class _$$_CountryEntityModelCopyWith<$Res>
       __$$_CountryEntityModelCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String name});
+  $Res call({String officialName, String name});
 }
 
 /// @nodoc
@@ -83,9 +89,14 @@ class __$$_CountryEntityModelCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? officialName = null,
     Object? name = null,
   }) {
     return _then(_$_CountryEntityModel(
+      officialName: null == officialName
+          ? _value.officialName
+          : officialName // ignore: cast_nullable_to_non_nullable
+              as String,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -97,17 +108,19 @@ class __$$_CountryEntityModelCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_CountryEntityModel implements _CountryEntityModel {
-  const _$_CountryEntityModel({required this.name});
+  const _$_CountryEntityModel({required this.officialName, required this.name});
 
   factory _$_CountryEntityModel.fromJson(Map<String, dynamic> json) =>
       _$$_CountryEntityModelFromJson(json);
 
   @override
+  final String officialName;
+  @override
   final String name;
 
   @override
   String toString() {
-    return 'CountryEntityModel(name: $name)';
+    return 'CountryEntityModel(officialName: $officialName, name: $name)';
   }
 
   @override
@@ -115,12 +128,14 @@ class _$_CountryEntityModel implements _CountryEntityModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_CountryEntityModel &&
+            (identical(other.officialName, officialName) ||
+                other.officialName == officialName) &&
             (identical(other.name, name) || other.name == name));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, name);
+  int get hashCode => Object.hash(runtimeType, officialName, name);
 
   @JsonKey(ignore: true)
   @override
@@ -138,12 +153,15 @@ class _$_CountryEntityModel implements _CountryEntityModel {
 }
 
 abstract class _CountryEntityModel implements CountryEntityModel {
-  const factory _CountryEntityModel({required final String name}) =
-      _$_CountryEntityModel;
+  const factory _CountryEntityModel(
+      {required final String officialName,
+      required final String name}) = _$_CountryEntityModel;
 
   factory _CountryEntityModel.fromJson(Map<String, dynamic> json) =
       _$_CountryEntityModel.fromJson;
 
+  @override
+  String get officialName;
   @override
   String get name;
   @override

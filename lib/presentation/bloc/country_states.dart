@@ -1,3 +1,4 @@
+import 'package:country_listings/data/models/country_entity_model.dart';
 import 'package:country_listings/data/models/country_model.dart';
 import 'package:equatable/equatable.dart';
 
@@ -24,7 +25,7 @@ class LoadedCountryState extends CountryState {
 class UpdatedCountryState extends CountryState {}
 
 class StoredCountryNameState extends CountryState {
-  final List<String> storedCountryNames;
+  final List<CountryEntityModel> storedCountryNames;
 
   const StoredCountryNameState({this.storedCountryNames = const []});
 

@@ -30,11 +30,7 @@ class LocalCountryService {
   }
 
   Future<void> _createDatabase(Database db, int version) async {
-    await db.execute('''
-      CREATE TABLE countries (
-        name TEXT PRIMARY KEY,
-      )
-    ''');
+    await db.execute('CREATE TABLE countries (officialName TEXT PRIMARY KEY, name TEXT)');
   }
 
   Future<List<CountryEntityModel>> findAllCountries() async {
@@ -50,20 +46,23 @@ class LocalCountryService {
     return countryList;
   }
 
-  Future<CountryEntityModel?> updateCountry(CountryEntityModel country) async {
+  Future<CountryEntityModel?> updateCountry({required CountryEntityModel country}) async {
     final database = await db;
-
     final result = await database.update(
       'countries',
       country.toJson(),
-      where: 'code = ?',
+      where: 'officialName = ?',
       whereArgs: [
-        country.name.toLowerCase(),
+        country.officialName,
       ],
     );
-    if (result != 0) {
-      return country;
+
+    if (result == 0) {
+      final result = await database.insert("countries", country.toJson());
+      if (result != 0) {
+        return country;
+      }
     }
-    return null;
+    return country;
   }
 }

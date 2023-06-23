@@ -1,3 +1,4 @@
+import 'package:country_listings/data/models/country_entity_model.dart';
 import 'package:equatable/equatable.dart';
 
 abstract class CountryEvent extends Equatable {
@@ -10,7 +11,7 @@ abstract class CountryEvent extends Equatable {
 class FetchCountriesEvent extends CountryEvent {}
 
 class ChangeCountryNameEvent extends CountryEvent {
-  final String countryName;
+  final CountryEntityModel countryName;
 
   const ChangeCountryNameEvent({required this.countryName});
 
