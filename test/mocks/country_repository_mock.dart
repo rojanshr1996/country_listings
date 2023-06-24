@@ -4,11 +4,11 @@ import 'package:country_listings/utils/res/data_state.dart';
 
 CountryNameModel countryData1 = const CountryNameModel(
   common: "Nepal",
-  official: "Nepal",
+  official: "Nepal Official",
 );
 CountryNameModel countryData2 = const CountryNameModel(
   common: "India",
-  official: "India",
+  official: "India Official",
 );
 
 List<CountryModel> mockCountryList = [

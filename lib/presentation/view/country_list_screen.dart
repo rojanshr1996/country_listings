@@ -54,6 +54,7 @@ class CountryListScreen extends StatelessWidget {
             return Center(
               child: Text(
                 "Loading ...",
+                key: const Key("CountryListLoading"),
                 style: Theme.of(context).textTheme.headlineMedium,
               ),
             );
@@ -66,9 +67,10 @@ class CountryListScreen extends StatelessWidget {
                   title: Text(country.name.common),
                   subtitle: Text(country.name.official),
                   trailing: IconButton(
+                    key: Key(country.name.official),
                     icon: const Icon(Icons.edit),
-                    onPressed: () => {
-                      _renameCountryDialog(context, country.name),
+                    onPressed: () {
+                      _renameCountryDialog(context, country.name);
                     },
                   ),
                 );
