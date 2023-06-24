@@ -12,7 +12,8 @@ class CountryBloc extends Bloc<CountryEvent, CountryState> {
       emit(LoadingCountryState());
       try {
         final result = await _countryRepo.fetchAllCountryList();
-        emit(LoadedCountryState(countries: result.data!));
+        print("THIS IS THE LIST: ${result.error.toString()}");
+        emit(LoadedCountryState(countries: result.data ?? []));
       } catch (error) {
         emit(ErrorCountryState(Exception(error)));
       }
@@ -35,7 +36,7 @@ class CountryBloc extends Bloc<CountryEvent, CountryState> {
       emit(LoadingCountryState());
       try {
         final result = await _countryRepo.fetchCountryNames();
-        emit(StoredCountryNameState(storedCountryNames: result.data!));
+        emit(StoredCountryNameState(storedCountryNames: result.data ?? []));
       } catch (error) {
         emit(ErrorCountryState(Exception(error)));
       }
