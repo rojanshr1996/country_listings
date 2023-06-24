@@ -7,25 +7,28 @@ import 'package:country_listings/domain/repositories/country_repository.dart';
 import 'package:country_listings/utils/res/data_state.dart';
 
 class CountryRepositoryImpl extends BaseApiRepository implements CountryRepository {
-  final CountryService countryService;
-  final LocalCountryService localCountryService;
+  late CountryService _countryService;
+  late LocalCountryService _localCountryService;
 
-  CountryRepositoryImpl({required this.countryService, required this.localCountryService});
+  CountryRepositoryImpl({required CountryService countryService, required LocalCountryService localCountryService}) {
+    _localCountryService = localCountryService;
+    _countryService = countryService;
+  }
 
   @override
   Future<DataState<List<CountryModel>>> fetchAllCountryList() {
     return getStateOf(
-      request: () => countryService.fetchAllCountryList(),
+      request: () => _countryService.fetchAllCountryList(),
     );
   }
 
   @override
   Future<DataState<List<CountryEntityModel>>> fetchCountryNames() {
-    return localCountryService.findAllCountries();
+    return _localCountryService.findAllCountries();
   }
 
   @override
   Future<DataState<CountryEntityModel?>> updateCountryName({required CountryEntityModel countryName}) {
-    return localCountryService.updateCountry(country: countryName);
+    return _localCountryService.updateCountry(country: countryName);
   }
 }

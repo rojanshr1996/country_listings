@@ -19,7 +19,12 @@ class UpdatedCountryNamesScreen extends StatelessWidget {
       body: BlocBuilder<CountryBloc, CountryState>(
         builder: (context, state) {
           if (state is InitialCountryState || state is LoadingCountryState) {
-            return const Center(child: Text("Loading ..."));
+            return Center(
+              child: Text(
+                "Loading ...",
+                style: Theme.of(context).textTheme.headlineMedium,
+              ),
+            );
           } else if (state is StoredCountryNameState) {
             if (state.storedCountryNames.isEmpty) {
               return const Center(child: Text('No stored names'));

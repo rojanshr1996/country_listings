@@ -21,13 +21,13 @@ class _CountryService implements CountryService {
   String? baseUrl;
 
   @override
-  Future<HttpResponse<List<CountryModel>>> fetchAllCountryList() async {
+  Future<List<CountryModel>> fetchAllCountryList() async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final Map<String, dynamic>? _data = null;
-    final _result = await _dio.fetch<List<dynamic>>(
-        _setStreamType<HttpResponse<List<CountryModel>>>(Options(
+    final _result = await _dio
+        .fetch<List<dynamic>>(_setStreamType<List<CountryModel>>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
@@ -46,8 +46,7 @@ class _CountryService implements CountryService {
     var value = _result.data!
         .map((dynamic i) => CountryModel.fromJson(i as Map<String, dynamic>))
         .toList();
-    final httpResponse = HttpResponse(value, _result);
-    return httpResponse;
+    return value;
   }
 
   RequestOptions _setStreamType<T>(RequestOptions requestOptions) {

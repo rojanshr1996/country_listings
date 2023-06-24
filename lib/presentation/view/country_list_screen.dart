@@ -4,6 +4,7 @@ import 'package:country_listings/data/models/country_model.dart';
 import 'package:country_listings/presentation/bloc/country_bloc.dart';
 import 'package:country_listings/presentation/bloc/country_events.dart';
 import 'package:country_listings/presentation/bloc/country_states.dart';
+import 'package:country_listings/presentation/widgets/rename_country_dialog_widget.dart';
 import 'package:country_listings/utils/utilities.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -50,7 +51,12 @@ class CountryListScreen extends StatelessWidget {
         },
         builder: (context, state) {
           if (state is InitialCountryState || state is LoadingCountryState) {
-            return const Center(child: Text("Loading ..."));
+            return Center(
+              child: Text(
+                "Loading ...",
+                style: Theme.of(context).textTheme.headlineMedium,
+              ),
+            );
           } else if (state is LoadedCountryState) {
             return ListView.builder(
               itemCount: state.countries.length,
@@ -82,33 +88,18 @@ class CountryListScreen extends StatelessWidget {
 
     await showDialog(
       context: context,
-      builder: (context) => AlertDialog(
-        title: const Text('Country'),
-        content: TextField(
-          controller: controller,
-          decoration: const InputDecoration(
-            labelText: 'New Name',
-          ),
-        ),
-        actions: [
-          TextButton(
-            child: const Text('Cancel'),
-            onPressed: () => Navigator.of(context).pop(),
-          ),
-          TextButton(
-            child: const Text('Rename'),
-            onPressed: () {
-              BlocProvider.of<CountryBloc>(context).add(
-                ChangeCountryNameEvent(
-                    countryName: CountryEntityModel(
-                  name: controller.text.trim(),
-                  officialName: country.official,
-                )),
-              );
-              Utilities.closeActivity(context);
-            },
-          ),
-        ],
+      builder: (context) => RenameCountryDialogWidget(
+        textEditingController: controller,
+        onPressed: () {
+          BlocProvider.of<CountryBloc>(context).add(
+            ChangeCountryNameEvent(
+                countryName: CountryEntityModel(
+              name: controller.text.trim(),
+              officialName: country.official,
+            )),
+          );
+          Utilities.closeActivity(context);
+        },
       ),
     );
   }

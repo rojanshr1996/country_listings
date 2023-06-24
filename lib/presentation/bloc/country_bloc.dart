@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:country_listings/data/models/country_entity_model.dart';
 import 'package:country_listings/domain/repositories/country_repository.dart';
 import 'package:country_listings/presentation/bloc/country_events.dart';
@@ -25,7 +23,6 @@ class CountryBloc extends Bloc<CountryEvent, CountryState> {
 
       try {
         final result = await _countryRepo.updateCountryName(countryName: event.countryName);
-        log("UPDATED COUNTRY RESULT: $result");
         if (result.data is CountryEntityModel) {
           emit(UpdatedCountryState());
         }
@@ -38,7 +35,6 @@ class CountryBloc extends Bloc<CountryEvent, CountryState> {
       emit(LoadingCountryState());
       try {
         final result = await _countryRepo.fetchCountryNames();
-        log("STORED COUNTRY RESULT: $result");
         emit(StoredCountryNameState(storedCountryNames: result.data!));
       } catch (error) {
         emit(ErrorCountryState(Exception(error)));

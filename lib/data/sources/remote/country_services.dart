@@ -10,5 +10,5 @@ abstract class CountryService {
   factory CountryService(Dio dio, {String baseUrl}) = _CountryService;
 
   @GET(Constants.allCountries)
-  Future<HttpResponse<List<CountryModel>>> fetchAllCountryList();
+  Future<List<CountryModel>> fetchAllCountryList();
 }
