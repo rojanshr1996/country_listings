@@ -2,13 +2,10 @@ import 'package:country_listings/data/repositories/base_api_repository.dart';
 import 'package:country_listings/data/repositories/country_repository_impl.dart';
 import 'package:country_listings/data/sources/local/local_country_service.dart';
 import 'package:country_listings/data/sources/remote/country_services.dart';
-import 'package:dio/dio.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
 import '../mocks/country_repository_mock.dart';
-
-class MockDio extends Mock implements Dio {}
 
 class MockCountryService extends Mock implements CountryService {}
 

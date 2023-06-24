@@ -24,7 +24,7 @@ void main() {
   });
 
   group("testing country list blocs", () {
-    test("Initial statis is InitialCountryState()", () {
+    test("Initial status is InitialCountryState()", () {
       expect(sut.state, InitialCountryState());
     });
 

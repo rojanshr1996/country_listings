@@ -17,10 +17,8 @@ class MockCountryRepository extends Mock implements CountryRepository {}
 
 void main() {
   late MockCountryBloc sut;
-  // late MockCountryRepository mockCountryRepository;
 
   setUp(() {
-    // mockCountryRepository = MockCountryRepository();
     sut = MockCountryBloc();
   });
 
