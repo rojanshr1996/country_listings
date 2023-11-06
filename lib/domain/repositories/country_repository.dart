@@ -7,5 +7,6 @@ abstract class CountryRepository {
 
   Future<DataState<List<CountryEntityModel>>> fetchCountryNames();
 
-  Future<DataState<CountryEntityModel?>> updateCountryName({required CountryEntityModel countryName});
+  Future<DataState<CountryEntityModel?>> updateCountryName(
+      {required CountryEntityModel countryName});
 }

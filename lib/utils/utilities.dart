@@ -23,7 +23,9 @@ class Utilities {
   static Future<dynamic> openActivity(context, object,
       {bool fullscreenDialog = false,
       int transitionDuration = 50,
-      Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)? transitionBuilder}) async {
+      Widget Function(
+              BuildContext, Animation<double>, Animation<double>, Widget)?
+          transitionBuilder}) async {
     return await Navigator.of(context).push(
       PageRouteBuilder(
           fullscreenDialog: fullscreenDialog,
@@ -88,20 +90,27 @@ class Utilities {
     return FocusScope.of(context).unfocus();
   }
 
-  static Future<dynamic> replaceNamedActivity(context, routeName, {Object? arguments}) async {
-    return await Navigator.pushReplacementNamed(context, routeName, arguments: arguments);
+  static Future<dynamic> replaceNamedActivity(context, routeName,
+      {Object? arguments}) async {
+    return await Navigator.pushReplacementNamed(context, routeName,
+        arguments: arguments);
   }
 
-  static Future<dynamic> openNamedActivity(context, routeName, {Object? arguments}) async {
+  static Future<dynamic> openNamedActivity(context, routeName,
+      {Object? arguments}) async {
     return await Navigator.pushNamed(context, routeName, arguments: arguments);
   }
 
   static void removeStackActivity(context, object) {
-    Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => object), (r) => false);
+    Navigator.pushAndRemoveUntil(
+        context, MaterialPageRoute(builder: (context) => object), (r) => false);
   }
 
-  static void removeNamedStackActivity(context, routeName, {Object? arguments}) {
-    Navigator.of(context).pushNamedAndRemoveUntil(routeName, (Route<dynamic> route) => false, arguments: arguments);
+  static void removeNamedStackActivity(context, routeName,
+      {Object? arguments}) {
+    Navigator.of(context).pushNamedAndRemoveUntil(
+        routeName, (Route<dynamic> route) => false,
+        arguments: arguments);
   }
 
   static void closeActivity(context) {

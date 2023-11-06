@@ -32,7 +32,8 @@ class LocalCountryService {
   }
 
   Future<void> _createDatabase(Database db, int version) async {
-    await db.execute('CREATE TABLE $_tableName (officialName TEXT PRIMARY KEY, name TEXT)');
+    await db.execute(
+        'CREATE TABLE $_tableName (officialName TEXT PRIMARY KEY, name TEXT)');
   }
 
   Future<DataState<List<CountryEntityModel>>> findAllCountries() async {
@@ -48,7 +49,8 @@ class LocalCountryService {
     return DataSuccess(isLoading: false, data: countryList);
   }
 
-  Future<DataState<CountryEntityModel?>> updateCountry({required CountryEntityModel country}) async {
+  Future<DataState<CountryEntityModel?>> updateCountry(
+      {required CountryEntityModel country}) async {
     final database = await db;
     final result = await database.update(
       _tableName,

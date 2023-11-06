@@ -29,14 +29,16 @@ class CountryListScreen extends StatelessWidget {
           actions: [
             TextButton(
               onPressed: () {
-                Utilities.openNamedActivity(context, Routes.storedCounryNamesList);
+                Utilities.openNamedActivity(
+                    context, Routes.storedCounryNamesList);
               },
               child: const Text("Stored Names"),
             )
           ],
         ),
         body: BlocConsumer<CountryBloc, CountryState>(
-          buildWhen: (previous, current) => previous != current && current is LoadedCountryState,
+          buildWhen: (previous, current) =>
+              previous != current && current is LoadedCountryState,
           listener: (context, state) {
             if (state is ErrorCountryState) {
               ScaffoldMessenger.of(context).showSnackBar(
@@ -52,7 +54,8 @@ class CountryListScreen extends StatelessWidget {
                   content: Text("Country Name updated and stored successfully"),
                 ),
               );
-              Utilities.openNamedActivity(context, Routes.storedCounryNamesList);
+              Utilities.openNamedActivity(
+                  context, Routes.storedCounryNamesList);
             }
           },
           builder: (context, state) {
@@ -92,8 +95,10 @@ class CountryListScreen extends StatelessWidget {
     );
   }
 
-  Future<void> _renameCountryDialog(BuildContext context, CountryNameModel country) async {
-    final TextEditingController controller = TextEditingController(text: country.common);
+  Future<void> _renameCountryDialog(
+      BuildContext context, CountryNameModel country) async {
+    final TextEditingController controller =
+        TextEditingController(text: country.common);
 
     await showDialog(
       context: context,

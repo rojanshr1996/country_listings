@@ -9,7 +9,8 @@ class CountryModel with _$CountryModel {
     required CountryNameModel name,
   }) = _CountryModel;
 
-  factory CountryModel.fromJson(Map<String, Object?> json) => _$CountryModelFromJson(json);
+  factory CountryModel.fromJson(Map<String, Object?> json) =>
+      _$CountryModelFromJson(json);
 }
 
 @freezed
@@ -19,5 +20,6 @@ class CountryNameModel with _$CountryNameModel {
     required String official,
   }) = _CountryNameModel;
 
-  factory CountryNameModel.fromJson(Map<String, Object?> json) => _$CountryNameModelFromJson(json);
+  factory CountryNameModel.fromJson(Map<String, Object?> json) =>
+      _$CountryNameModelFromJson(json);
 }

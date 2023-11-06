@@ -12,7 +12,8 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => const CountryListScreen());
 
       case Routes.storedCounryNamesList:
-        return MaterialPageRoute(builder: (_) => const UpdatedCountryNamesScreen());
+        return MaterialPageRoute(
+            builder: (_) => const UpdatedCountryNamesScreen());
 
       default:
         return errorRoute(settings);

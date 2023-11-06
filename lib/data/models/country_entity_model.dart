@@ -10,5 +10,6 @@ class CountryEntityModel with _$CountryEntityModel {
     required String name,
   }) = _CountryEntityModel;
 
-  factory CountryEntityModel.fromJson(Map<String, Object?> json) => _$CountryEntityModelFromJson(json);
+  factory CountryEntityModel.fromJson(Map<String, Object?> json) =>
+      _$CountryEntityModelFromJson(json);
 }

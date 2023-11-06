@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 class RenameCountryDialogWidget extends StatelessWidget {
   final TextEditingController textEditingController;
   final VoidCallback? onPressed;
-  const RenameCountryDialogWidget({super.key, required this.textEditingController, this.onPressed});
+  const RenameCountryDialogWidget(
+      {super.key, required this.textEditingController, this.onPressed});
 
   @override
   Widget build(BuildContext context) {

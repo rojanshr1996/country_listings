@@ -29,12 +29,15 @@ class _MyAppState extends State<MyApp> {
     return MultiRepositoryProvider(
       providers: [
         RepositoryProvider<CountryRepository>(
-            create: (_) =>
-                CountryRepositoryImpl(countryService: CountryService(dio), localCountryService: LocalCountryService()))
+            create: (_) => CountryRepositoryImpl(
+                countryService: CountryService(dio),
+                localCountryService: LocalCountryService()))
       ],
       child: MultiBlocProvider(
         providers: [
-          BlocProvider(create: (context) => CountryBloc(RepositoryProvider.of<CountryRepository>(context))),
+          BlocProvider(
+              create: (context) => CountryBloc(
+                  RepositoryProvider.of<CountryRepository>(context))),
         ],
         child: MaterialApp(
           title: Constants.appName,
